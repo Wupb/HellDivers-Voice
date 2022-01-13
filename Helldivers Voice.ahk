@@ -40,7 +40,7 @@ Gui, Add, Edit, vactivationWord Limit190 x+20 yp w200, strategem
 Gui, Add, Text, xm w%guiWidth% y+20 Center, Keybinds
 
 Gui, Add, Text, % "xm w" guiWidth/3 " Right", Strategem
-Gui, Add, Edit, vstrategemKey x+20 yp w120, Space
+Gui, Add, Edit, vstrategemKey x+20 yp w120, LCtrl
 Gui, Add, Link, % "x+10 yp Left", <a href="https://www.autohotkey.com/docs/KeyList.htm">Possible key names</a>
 
 Gui, Add, Text, % "xm w" guiWidth/3 " Right", Up
