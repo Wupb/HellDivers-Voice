@@ -40,7 +40,7 @@ ObjectTreeView(object, title="Object TreeView", fold=0, parentItemId="") {
         fold >>= 1
 
         for key, value in object {
-            if ([key].GetCapacity(1)) {
+            if ([key].GetCapacity(1)) { ; Check whether or not the key is string
                 key := """" key """"
             }
             if (IsObject(value)) {

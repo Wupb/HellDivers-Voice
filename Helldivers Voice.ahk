@@ -191,10 +191,6 @@ RunStrategem(udlrString) {
     BlockInput Off
 }
 
-ViewStrategems(object) {
-    ObjectTreeView(object, 1)
-}
-
 GuiClose() {
     ExitApp
 }
