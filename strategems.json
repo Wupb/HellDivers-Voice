@@ -392,6 +392,7 @@
     "Orbital Laser Strike": {
         "aliases": [
             "Orbital Laser Strike",
+            "Orbital Laser",
             "Laser Strike",
             "Orbital Strike"
         ],
@@ -408,7 +409,8 @@
     },
     "Railcannon Strike": {
         "aliases": [
-            "Railcannon Strike"
+            "Railcannon Strike",
+            "Railcannon"
         ],
         "code": "RDUDL"
     },
@@ -432,7 +434,8 @@
             "ME-1",
             "Sniffer Metal Detector",
             "Sniffer Detector",
-            "Metal Detector"
+            "Metal Detector",
+            "Sniffer"
         ],
         "code": "DDRU"
     },

@@ -1,9 +1,12 @@
-#SingleInstance force
-#Persistent
 #Include JSON.ahk
 #Include Object TreeView.ahk
 #Include Splash Tooltip.ahk
 #include Lib/HotVoice.ahk
+#SingleInstance force
+#Persistent
+#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 Menu, Tray, Icon, helldivers.ico
 Menu, Tray, NoStandard
 Menu, Tray, Add, Exit, GuiClose
@@ -23,7 +26,7 @@ LV_ModifyCol(3, "125 Text")
 Loop % recognizers.Length() {
 	rec := recognizers[A_index]
 	if (rec.TwoLetterISOLanguageName == "iv")
-		continue ; Invariant language culture does not seem to be supported
+		continue ; Invariant culture does not seem to be supported
 	LV_Add(, A_index, rec.Name, rec.LanguageDisplayName)
 }
 if (!LV_GetCount()) {
@@ -152,12 +155,13 @@ Start() {
 }
 
 StrategemCallback(grammarName, words){
-    global aliasDict, stp, strategems
+    global aliasDict, stp, strategems, activationWord
 
-    ; Loop though words, starting from the second word
-    Loop % words.Length() - 1
-        wordString .= words[A_Index + 1] " "
+    ; Join the words and omit the activation word
+    Loop % words.Length()
+        wordString .= words[A_Index] " "
     wordString := SubStr(wordString, 1, -1) ; Remove the trailing space
+    wordString := StrReplace(wordString, activationWord " ",,, 1)
 
     strategemName := aliasDict.Item[wordString]
 
@@ -179,12 +183,12 @@ RunStrategem(udlrString) {
 
     BlockInput On
     Send {%strategemKey% down}
-    Sleep 75
+    Sleep 50
 
     Loop, Parse, udlrString
     { ; Specialized loops do not support One True Brace https://www.autohotkey.com/docs/commands/Loop.htm#Remarks
         Send % %A_LoopField%
-        Sleep 75
+        Sleep 50
     }
 
     Send {%strategemKey% up}

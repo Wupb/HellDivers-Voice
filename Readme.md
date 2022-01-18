@@ -14,7 +14,7 @@ Helldivers Voice is an AutoHotKey script for activating Helldivers strategems vi
 The [compiled releases](https://github.com/Wupb/HellDivers-Voice/releases) are also available, however, they still require Microsoft Speech Platform (step 4 & 5).
 
 # Usage
-1. (Optional) Edit `strategems.json` to change each strategems' alias, i.e. the spoken words
+1. (Optional) Edit `strategems.json` to change each strategem's alias, i.e. the spoken words
 2. Run `HellDivers Voice.ahk` (if .ahk file association is set) or `HellDivers Voice.exe` (if the AHK executable was renamed)
 3. Set configurations in the initial window, then start
 4. Activate strategems by using the activation word, followed by a strategem's alias. For example:
@@ -23,4 +23,5 @@ The [compiled releases](https://github.com/Wupb/HellDivers-Voice/releases) are a
 
 # Remarks
 * A tooltip will appear whenever a speech is recognized, however, the inputs will only be send if the game is in focus.
+* Holding down keys sometimes interfere with the macros, so it is best to stand still when activating strategems.
 * The speech platform sometimes has trouble listening for abbreviations, especially ones starting with M. Several abbreviation are space-separated to distinctly separate each spoken alphabet.
