@@ -4,11 +4,11 @@
 #include Lib/HotVoice.ahk
 #SingleInstance force
 #Persistent
-#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
-SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+#NoEnv ; Recommended for performance and compatibility with future AutoHotkey releases.
+SetWorkingDir %A_ScriptDir% ; Ensures a consistent starting directory.
+SendMode Input ; Recommended for new scripts due to its superior speed and reliability.
 Menu, Tray, Icon, helldivers.ico
-Menu, Tray, NoStandard
+; Menu, Tray, NoStandard
 Menu, Tray, Add, Exit, GuiClose
 
 ; Create a new HotVoice class
@@ -24,17 +24,16 @@ LV_ModifyCol(1, "25 Integer")
 LV_ModifyCol(2, "325 Text")
 LV_ModifyCol(3, "125 Text")
 Loop % recognizers.Length() {
-	rec := recognizers[A_index]
-	if (rec.TwoLetterISOLanguageName == "iv")
-		continue ; Invariant culture does not seem to be supported
-	LV_Add(, A_index, rec.Name, rec.LanguageDisplayName)
+    rec := recognizers[A_index]
+    if (rec.TwoLetterISOLanguageName == "iv")
+        continue ; Invariant culture does not seem to be supported
+    LV_Add(, A_index, rec.Name, rec.LanguageDisplayName)
 }
 if (!LV_GetCount()) {
-	MsgBox, No speech recognition languages found
-	ExitApp
+    MsgBox, No speech recognition languages found
+    ExitApp
 }
 LV_Modify(1, "Select") ; Select the first recognizer on the list by default
-
 
 Gui, Add, Text, % "xm y+2- w" guiWidth/3 " Right", Activation Word
 Gui, Add, Edit, vactivationWord Limit190 x+20 yp w200, strategem
@@ -60,8 +59,7 @@ Gui, Add, Hotkey, vR Limit190 x+20 yp, d
 
 Gui, Add, Text, xm w%guiWidth% Center, Note: the directional keybinds may show the Ctrl + Alt modifier, but it will be ignored
 
-
-Gui, Add, Button, % "gStart w150 xm+" guiWidth/2 - 75 " y+20  Center", Start
+Gui, Add, Button, % "gStart w150 xm+" guiWidth/2 - 75 " y+20 Center", Start
 
 Gui, Show,, Helldivers Voice
 return
@@ -154,7 +152,7 @@ Start() {
     hv.StartRecognizer()
 }
 
-StrategemCallback(grammarName, words) {
+StrategemCallback(grammarName, words){
     global aliasDict, stp, strategems, activationWord
 
     ; Join the words and omit the activation word
@@ -167,9 +165,9 @@ StrategemCallback(grammarName, words) {
 
     stp.show("Words: " wordString "`nStrategem: " strategemName)
 
-    if (WinActive("ahk_exe helldivers.exe")) {
-        RunStrategem(strategems[strategemName].code)
-    }
+    ; if (WinActive("ahk_exe helldivers2.exe")) {
+	RunStrategem(strategems[strategemName].code)
+    ; }
 }
 
 ; Sends inputs to activate a strategem, given the up/down/left/right sequence string
@@ -181,19 +179,52 @@ RunStrategem(udlrString) {
     ; Normalize parameter
     ; StringUpper, udlrString, udlrString
 
-    BlockInput On
-    Send {%strategemKey% down}
-    Sleep 50
+    ; BlockInput On
+    SendInput, {LControl Down}
+    Sleep 35
 
+    ; loop that will call key down, sleep 35, then call key up on the relevant step. U=W D=S L=A R=D
     Loop, Parse, udlrString
-    { ; Specialized loops do not support One True Brace https://www.autohotkey.com/docs/commands/Loop.htm#Remarks
-        Send % %A_LoopField%
-        Sleep 50
+    {
+        direction := A_LoopField
+        if (direction = "U")
+            SendInput, {W Down}
+        else if (direction = "D")
+            SendInput, {S Down}
+        else if (direction = "L")
+            SendInput, {A Down}
+        else if (direction = "R")
+            SendInput, {D Down}
+
+        Sleep 35
+
+        if (direction = "U")
+            SendInput, {W Up}
+        else if (direction = "D")
+            SendInput, {S Up}
+        else if (direction = "L")
+            SendInput, {A Up}
+        else if (direction = "R")
+            SendInput, {D Up}
+
+        Sleep 35
     }
 
-    Send {%strategemKey% up}
-    BlockInput Off
+    SendInput, {LControl Up}
+	
+
+	; SendInput {Right Down}
+	; Sleep 300
+
+	; SendInput, {Left Down}
+	; Sleep 300
+	; SendInput, {Left Up}
+
+	; SendInput {Right Up}
+    ; BlockInput Off
+    return
 }
+
 
 GuiClose() {
     ExitApp
