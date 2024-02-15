@@ -91,7 +91,9 @@
 	},
 	"Orbital 120mm HE Barrage": {
 		"aliases": [
-			"Orbital 120mm HE Barrage"
+			"Orbital 120mm HE Barrage",
+			"120MM Barrage",
+			"120mm"
 		],
 		"code": "RRDLRD"
 	},
@@ -168,7 +170,8 @@
 	},
 	"Orbital Precision Strike": {
 		"aliases": [
-			"Orbital Precision Strike"
+			"Orbital Precision Strike",
+			"Precision Strike"
 		],
 		"code": "RRU"
 	},
@@ -230,7 +233,7 @@
 		"aliases": [
 			"Laser Cannon"
 		],
-		"code": ""
+		"code": "DLDUL"
 	},
 	"MD-I4 Incendiary Mines": {
 		"aliases": [
@@ -269,7 +272,8 @@
 		"aliases": [
 			"A/MG-43 Machine gun sentry",
 			"Machine gun sentry",
-			"MG-43 Sentry"
+			"MG-43 Sentry",
+			"MG sentry"
 		],
 		"code": "DURRU"
 	},
@@ -296,7 +300,7 @@
 			"Guard Dog",
 			"AR-23 Dog"
 		],
-		"code": "DULURD"
+		"code": "DULURR"
 	},
 	"A/AC-8 Autocannon Sentry": {
 		"aliases": [
