@@ -180,7 +180,7 @@ RunStrategem(udlrString) {
     ; StringUpper, udlrString, udlrString
 
     BlockInput On
-    SendInput, {LControl Down}
+    SendInput, {%strategemKey% Down}
     Sleep 100
 
     ; loop that will call key down, sleep 35, then call key up on the relevant step. U=W D=S L=A R=D
@@ -210,12 +210,11 @@ RunStrategem(udlrString) {
         Sleep 35
     }
 
-    SendInput, {LControl Up}
+    SendInput, {%strategemKey% Up}
     Sleep 35
     SendInput, {LButton Down}
     Sleep 35
     SendInput, {LButton Up}
-    Sleep 35
     BlockInput Off
     return
 }
