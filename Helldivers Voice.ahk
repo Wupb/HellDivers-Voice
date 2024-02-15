@@ -154,7 +154,7 @@ Start() {
     hv.StartRecognizer()
 }
 
-StrategemCallback(grammarName, words){
+StrategemCallback(grammarName, words) {
     global aliasDict, stp, strategems, activationWord
 
     ; Join the words and omit the activation word
