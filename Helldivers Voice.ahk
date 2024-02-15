@@ -179,9 +179,9 @@ RunStrategem(udlrString) {
     ; Normalize parameter
     ; StringUpper, udlrString, udlrString
 
-    ; BlockInput On
+    BlockInput On
     SendInput, {LControl Down}
-    Sleep 35
+    Sleep 100
 
     ; loop that will call key down, sleep 35, then call key up on the relevant step. U=W D=S L=A R=D
     Loop, Parse, udlrString
@@ -211,16 +211,12 @@ RunStrategem(udlrString) {
     }
 
     SendInput, {LControl Up}
-
-    ; SendInput {Right Down}
-    ; Sleep 300
-
-    ; SendInput, {Left Down}
-    ; Sleep 300
-    ; SendInput, {Left Up}
-
-    ; SendInput {Right Up}
-    ; BlockInput Off
+    Sleep 35
+    SendInput, {LButton Down}
+    Sleep 35
+    SendInput, {LButton Up}
+    Sleep 35
+    BlockInput Off
     return
 }
 
