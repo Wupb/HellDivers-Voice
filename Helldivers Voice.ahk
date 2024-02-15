@@ -165,9 +165,9 @@ StrategemCallback(grammarName, words){
 
     stp.show("Words: " wordString "`nStrategem: " strategemName)
 
-    ; if (WinActive("ahk_exe helldivers2.exe")) {
-	RunStrategem(strategems[strategemName].code)
-    ; }
+    if (WinActive("ahk_exe helldivers2.exe")) {
+        RunStrategem(strategems[strategemName].code)
+    }
 }
 
 ; Sends inputs to activate a strategem, given the up/down/left/right sequence string
@@ -211,20 +211,18 @@ RunStrategem(udlrString) {
     }
 
     SendInput, {LControl Up}
-	
 
-	; SendInput {Right Down}
-	; Sleep 300
+    ; SendInput {Right Down}
+    ; Sleep 300
 
-	; SendInput, {Left Down}
-	; Sleep 300
-	; SendInput, {Left Up}
+    ; SendInput, {Left Down}
+    ; Sleep 300
+    ; SendInput, {Left Up}
 
-	; SendInput {Right Up}
+    ; SendInput {Right Up}
     ; BlockInput Off
     return
 }
-
 
 GuiClose() {
     ExitApp
