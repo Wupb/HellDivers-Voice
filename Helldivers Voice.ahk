@@ -24,14 +24,14 @@ LV_ModifyCol(1, "25 Integer")
 LV_ModifyCol(2, "325 Text")
 LV_ModifyCol(3, "125 Text")
 Loop % recognizers.Length() {
-	rec := recognizers[A_index]
-	if (rec.TwoLetterISOLanguageName == "iv")
-		continue ; Invariant culture does not seem to be supported
-	LV_Add(, A_index, rec.Name, rec.LanguageDisplayName)
+    rec := recognizers[A_index]
+    if (rec.TwoLetterISOLanguageName == "iv")
+        continue ; Invariant culture does not seem to be supported
+    LV_Add(, A_index, rec.Name, rec.LanguageDisplayName)
 }
 if (!LV_GetCount()) {
-	MsgBox, No speech recognition languages found
-	ExitApp
+    MsgBox, No speech recognition languages found
+    ExitApp
 }
 LV_Modify(1, "Select") ; Select the first recognizer on the list by default
 
