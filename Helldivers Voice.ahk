@@ -11,14 +11,19 @@ Menu, Tray, Icon, helldivers.ico
 Menu, Tray, NoStandard
 Menu, Tray, Add, Exit, GuiClose
 
-; Create a new HotVoice class
 hv := new HotVoice()
 recognizers := hv.GetRecognizerList()
-guiWidth := 480
 stp := new SplashTooltip(6000, 800, 20)
 
-; Recognizer List
-Gui, Add, Text, xm w%guiWidth% Center, Recognizers
+; Create GUI
+guiWidth := 480
+Gui, Margin,, 4
+
+; Speech settings
+Gui, Font, s16 bold
+Gui, Add, Text, xm w%guiWidth% Center, Speech
+Gui, Font
+
 Gui, Add, ListView, xm w%guiWidth% r4 hwndrecognizerListview -Multi, #|Name|Language
 LV_ModifyCol(1, "25 Integer")
 LV_ModifyCol(2, "325 Text")
@@ -35,16 +40,17 @@ if (!LV_GetCount()) {
 }
 LV_Modify(1, "Select") ; Select the first recognizer on the list by default
 
-
-Gui, Add, Text, % "xm y+2- w" guiWidth/3 " Right", Activation Word
-Gui, Add, Edit, vactivationWord Limit190 x+20 yp w200, strategem
+Gui, Add, Text, % "xm w" guiWidth/3 " Right", Activation Word
+Gui, Add, Edit, vactivationWord Limit100 x+20 yp w200, strategem
 
 ; Keybinds settings
-Gui, Add, Text, xm w%guiWidth% y+20 Center, Keybinds
+Gui, Font, s16 bold
+Gui, Add, Text, xm w%guiWidth% y+40 Center, Keybinds
+Gui, Font
 
 Gui, Add, Text, % "xm w" guiWidth/3 " Right", Strategem
 Gui, Add, Edit, vstrategemKey x+20 yp w120, LCtrl
-Gui, Add, Link, % "x+10 yp Left", <a href="https://www.autohotkey.com/docs/KeyList.htm">Possible key names</a>
+Gui, Add, Link, x+10 yp Left, <a href="https://www.autohotkey.com/docs/KeyList.htm">Possible key names</a>
 
 Gui, Add, Text, % "xm w" guiWidth/3 " Right", Up
 Gui, Add, Hotkey, vU Limit190 x+20 yp, w
@@ -58,10 +64,12 @@ Gui, Add, Hotkey, vL Limit190 x+20 yp, a
 Gui, Add, Text, % "xm w" guiWidth/3 " Right", Right
 Gui, Add, Hotkey, vR Limit190 x+20 yp, d
 
-Gui, Add, Text, xm w%guiWidth% Center, Note: the directional keybinds may show the Ctrl + Alt modifier, but it will be ignored
+Gui, Add, Text, xm w%guiWidth% Disabled Center, Note: the directional keybinds may show the Ctrl + Alt modifier, but it will be ignored
 
-
-Gui, Add, Button, % "gStart w150 xm+" guiWidth/2 - 75 " y+20  Center", Start
+; Start
+Gui, Font, s12 bold
+Gui, Add, Button, % "gStart w150 xm+" guiWidth/2 - 75 " y+40  Center", Start
+Gui, Font
 
 Gui, Show,, Helldivers Voice
 return
