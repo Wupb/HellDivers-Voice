@@ -210,8 +210,9 @@ RunStrategem(udlrString) {
 
     Loop, Parse, udlrString
     { ; Specialized loops do not support One True Brace https://www.autohotkey.com/docs/commands/Loop.htm#Remarks
-        Send, % %A_LoopField%
+        Send, % "{" %A_LoopField% " Down}"
         Sleep, %delay%
+        Send, % "{" %A_LoopField% " Up}"
     }
 
     Send, {%strategemKey% up}
