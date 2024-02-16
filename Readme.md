@@ -2,6 +2,8 @@ Helldivers Voice is an AutoHotKey script for activating Helldivers strategems vi
 
 Helldivers 2 support is provisionary as it is not fully tested and some strategems are still missing.
 
+![](preview.png)
+
 # Installation
 1. Get this repository
     * Download and extract [master.zip](https://github.com/Wupb/HellDivers-Voice/archive/refs/heads/master.zip)  
