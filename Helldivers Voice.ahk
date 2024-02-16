@@ -1,3 +1,4 @@
+#Requires AutoHotkey v1.1.37+
 #Include JSON.ahk
 #Include Object TreeView.ahk
 #Include Splash Tooltip.ahk
