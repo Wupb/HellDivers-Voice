@@ -5,8 +5,8 @@
 #SingleInstance force
 #Persistent
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
-SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+SetWorkingDir, %A_ScriptDir%  ; Ensures a consistent starting directory.
+SendMode, Input  ; Recommended for new scripts due to its superior speed and reliability.
 Menu, Tray, Icon, helldivers.ico
 Menu, Tray, NoStandard
 Menu, Tray, Add, Exit, GuiClose
@@ -181,18 +181,18 @@ RunStrategem(udlrString) {
     ; Normalize parameter
     ; StringUpper, udlrString, udlrString
 
-    BlockInput On
-    Send {%strategemKey% down}
-    Sleep 50
+    BlockInput, On
+    Send, {%strategemKey% down}
+    Sleep, 50
 
     Loop, Parse, udlrString
     { ; Specialized loops do not support One True Brace https://www.autohotkey.com/docs/commands/Loop.htm#Remarks
-        Send % %A_LoopField%
-        Sleep 50
+        Send, % %A_LoopField%
+        Sleep, 50
     }
 
-    Send {%strategemKey% up}
-    BlockInput Off
+    Send, {%strategemKey% up}
+    BlockInput, Off
 }
 
 GuiClose() {
