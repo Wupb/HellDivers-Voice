@@ -66,6 +66,15 @@ Gui, Add, Hotkey, vR Limit190 x+20 yp, d
 
 Gui, Add, Text, xm w%guiWidth% Disabled Center, Note: the directional keybinds may show the Ctrl + Alt modifier, but it will be ignored
 
+; Misc settings
+Gui, Font, s16 bold
+Gui, Add, Text, xm w%guiWidth% y+40 Center, Misc
+Gui, Font
+
+Gui, Add, Text, % "xm w" guiWidth/2 " Right", Delay (in milliseconds) between inputs
+Gui, Add, Edit, vdelay Number x+20 yp w50
+Gui, Add, UpDown, Range0-1000, 50
+
 ; Start
 Gui, Font, s12 bold
 Gui, Add, Button, % "gStart w150 xm+" guiWidth/2 - 75 " y+40  Center", Start
@@ -184,19 +193,19 @@ StrategemCallback(grammarName, words) {
 ; Example (Reinforce strategem):
 ;   RunStrategem("UDRLU")
 RunStrategem(udlrString) {
-    global strategemKey, U, D, L, R
+    global strategemKey, U, D, L, R, delay
 
     ; Normalize parameter
     ; StringUpper, udlrString, udlrString
 
     BlockInput, On
     Send, {%strategemKey% down}
-    Sleep, 50
+    Sleep, %delay%
 
     Loop, Parse, udlrString
     { ; Specialized loops do not support One True Brace https://www.autohotkey.com/docs/commands/Loop.htm#Remarks
         Send, % %A_LoopField%
-        Sleep, 50
+        Sleep, %delay%
     }
 
     Send, {%strategemKey% up}
