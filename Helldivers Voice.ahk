@@ -71,6 +71,10 @@ Gui, Font, s16 bold
 Gui, Add, Text, xm w%guiWidth% y+40 Center, Misc
 Gui, Font
 
+Gui, Add, Text, % "xm w" guiWidth/2 " Right", Strategem source
+Gui, Add, Radio, vgame x+20 yp, Helldivers 1
+Gui, Add, Radio, Checked x+10 yp, Helldivers 2
+
 Gui, Add, Text, % "xm w" guiWidth/2 " Right", Delay (in milliseconds) between inputs
 Gui, Add, Edit, vdelay Number x+20 yp w50
 Gui, Add, UpDown, Range0-1000, 50
@@ -88,7 +92,7 @@ return
 ; ......... ;
 
 Start() {
-    global JSON, hv, recognizers, activationWord, strategems, aliasDict, strategemKey, U, D, L, R
+    global JSON, hv, recognizers, activationWord, strategems, aliasDict, strategemKey, U, D, L, R, game
 
     Gui, Submit, NoHide
 
@@ -131,11 +135,12 @@ Start() {
         ExitApp
     }
     try {
-        strategems := JSON.Load(jsonText)
+        strategems := JSON.Load(jsonText)["Helldivers " game]
     } catch e {
         MsgBox, % "Error parsing strategems.json:`n`n" e.Message
         ExitApp
     }
+
     ; Create a menu for viewing strategems.json
     ViewStrategems := Func("ObjectTreeView").Bind(strategems, "strategems.json TreeView", 1, "")
     Menu, Tray, Insert, Exit, View strategems.json, % ViewStrategems
@@ -184,7 +189,7 @@ StrategemCallback(grammarName, words) {
 
     stp.show("Words: " wordString "`nStrategem: " strategemName)
 
-    if (WinActive("ahk_exe helldivers.exe")) {
+    if (WinActive("ahk_exe helldivers.exe") || WinActive("ahk_exe helldivers2.exe")) {
         RunStrategem(strategems[strategemName].code)
     }
 }

@@ -1,5 +1,7 @@
 Helldivers Voice is an AutoHotKey script for activating Helldivers strategems via speech macro. This is powered by Microsoft Speech Platform through [evilC/HotVoice](https://github.com/evilC/HotVoice/).
 
+Helldivers 2 support is provisionary as it is not fully tested and some strategems are still missing.
+
 # Installation
 1. Get this repository
     * Download and extract [master.zip](https://github.com/Wupb/HellDivers-Voice/archive/refs/heads/master.zip)  
@@ -17,7 +19,7 @@ The [compiled releases](https://github.com/Wupb/HellDivers-Voice/releases) are a
 1. (Optional) Edit `strategems.json` to change each strategem's alias, i.e. the spoken words
 2. Run `HellDivers Voice.ahk` (if .ahk file association is set) or `HellDivers Voice.exe` (if the AHK executable was renamed)
 3. Set configurations in the initial window, then start
-4. Activate strategems by using the activation word, followed by a strategem's alias. For example:
+4. Activate strategems by speaking the activation word, followed by a strategem's alias. For example:
 > strategem dum-dum
 5. Stop the script via the tray icon
 
